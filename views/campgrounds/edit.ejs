@@ -1,18 +1,61 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Campground</title>
-</head>
-<body>
-  <h1>Edit Campground</h1>
-  <form action="/campgrounds/<%= campground._id%>?_method=PUT" method="post">
-    <label for="title">Change Title</label>
-    <input type="text" value='<%=campground.title%>' placeholder="change title" name="title">
-    <label for="title">Change Location</label>
-    <input type="text" value="<%=campground.location%>" placeholder="change location" name="location">
-    <button>Update</button>
-  </form>
-</body>
-</html>
+<% layout('layouts/boilerplate')%>
+<h1>Edit Campground</h1>
+<form action="/campgrounds/<%= campground._id%>?_method=PUT" method="post">
+  <label class="form-label mb-3" for="title">Add Title</label>
+  <input
+    class="form-control mb-3"
+    type="text"
+    placeholder="Add title"
+    id="title"
+    name="title"
+    value="<%=campground.title%>"
+  />
+  <label class="form-label mb-3" for="location">Add Location</label>
+  <input
+    class="form-control mb-3"
+    type="text"
+    placeholder="Add location"
+    id="location"
+    name="location"
+    value="<%=campground.location%>"
+  />
+  <label class="form-label mb-3" for="image">Image Url</label>
+  <input
+    class="form-control mb-3"
+    type="text"
+    placeholder="Add location"
+    id="image"
+    name="image"
+    value="<%=campground.image%>"
+  />
+  <label class="form-label mb-3" for="description">Description</label>
+  <textarea
+    class="form-control mb-3"
+    type="text"
+    placeholder="Add location"
+    id="description"
+    name="description"
+  >
+<%=campground.description%></textarea
+  >
+  <div class="mb-3">
+    <label class="form-label" for="price">Price</label>
+    <div class="input-group">
+      <span class="input-group-text">$</span>
+      <input
+        type="text"
+        class="form-control"
+        aria-label="price"
+        id="price"
+        value="<%=campground.price%>"
+      />
+      <span for="price" class="input-group-text">.00</span>
+    </div>
+  </div>
+  <div>
+    <button class="btn btn-success mb-3">Update Campground</button>
+  </div>
+</form>
+<a href="/campgrounds"
+  ><button class="btn btn-secondary mb-3">All campgrounds</button></a
+>
