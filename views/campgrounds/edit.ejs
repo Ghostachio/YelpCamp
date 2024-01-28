@@ -1,6 +1,12 @@
 <% layout('layouts/boilerplate')%>
 <h1>Edit Campground</h1>
-<form action="/campgrounds/<%= campground._id%>?_method=PUT" method="post">
+<form
+  action="/campgrounds/<%= campground._id%>?_method=PUT"
+  method="post"
+  novalidate
+  class="validate-form"
+  novalidate
+>
   <label class="form-label mb-3" for="title">Add Title</label>
   <input
     class="form-control mb-3"
@@ -9,6 +15,7 @@
     id="title"
     name="title"
     value="<%=campground.title%>"
+    required
   />
   <label class="form-label mb-3" for="location">Add Location</label>
   <input
@@ -18,6 +25,7 @@
     id="location"
     name="location"
     value="<%=campground.location%>"
+    required
   />
   <label class="form-label mb-3" for="image">Image Url</label>
   <input
@@ -27,6 +35,7 @@
     id="image"
     name="image"
     value="<%=campground.image%>"
+    required
   />
   <label class="form-label mb-3" for="description">Description</label>
   <textarea
@@ -35,6 +44,7 @@
     placeholder="Add location"
     id="description"
     name="description"
+    required
   >
 <%=campground.description%></textarea
   >
@@ -48,6 +58,8 @@
         aria-label="price"
         id="price"
         value="<%=campground.price%>"
+        name="price"
+        required
       />
       <span for="price" class="input-group-text">.00</span>
     </div>

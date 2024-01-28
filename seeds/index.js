@@ -2,8 +2,6 @@ const mongoose = require("mongoose");
 const Campground = require("../models/campground");
 const cities = require("./cities");
 const { places, descriptors } = require("./seedHelpers");
-const axios = require("axios");
-const morgan = require("morgan");
 mongoose.connect("mongodb://127.0.0.1:27017/yelpCamp");
 
 const sample = (arr) => {
