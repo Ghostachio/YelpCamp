@@ -21,7 +21,6 @@ app.use(methodOverride("_method"));
 app.get("/", async (req, res) => {
   const campgroundData = await Campground.find({});
   res.render("home", { campgroundData });
-  clear;
 });
 
 // campgrounds List page
