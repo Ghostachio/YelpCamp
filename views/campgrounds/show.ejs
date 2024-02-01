@@ -30,6 +30,52 @@
             <button class="btn btn-danger">Delete Campground</button>
           </form>
         </div>
+        <div class="mb-3 pt-3 mt-3">
+          <h1>Leave a Review</h1>
+          <form
+            action="/campgrounds/<%=campground._id%>/reviews"
+            method="post"
+            class="mb-3 validate-form"
+            novalidate
+          >
+            <div class="mb-3">
+              <label class="form-label" for="body">Review</label>
+              <textarea
+                name="body"
+                id="text"
+                cols="20"
+                rows="5"
+                placeholder="Type your Review"
+                class="form-control mb-3"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label class="mt-3 form-label" for="rating">Rating</label>
+              <input
+                type="range"
+                min="1"
+                max="5"
+                id="rating"
+                class="form-range"
+                name="rating"
+              />
+            </div>
+            <button class="btn btn-success">Submit Review</button>
+          </form>
+            <% for ( let review of campground.reviews){ %>
+            <div class="card mb-3">
+            <div class="card-body">
+              <h3 class="card-title">Rating: <%= review.rating %></h3>
+              <p class="card-text">Review: <%= review.body %></p>
+              <form action="/campgrounds/<%=campground._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
+              <button class="btn btn-danger">Delete Review</button>
+            </form>
+            </div>
+          </div>
+            <%}%>
+          </div>
+        </div>
       </div>
     </div>
   </div>
