@@ -3,6 +3,7 @@ const router = express.Router();
 const Campground = require("../models/campground");
 const catchAsync = require("../utils/catchAsync");
 const Joi = require("joi");
+const { isLoggedin } = require("../middlewares");
 
 // validating Campgrounds Creation
 const validateCampgrounds = (req, res, next) => {
@@ -31,12 +32,13 @@ router.get(
 );
 
 // Create new Campground
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedin, (req, res) => {
   res.render("campgrounds/new");
 });
 
 router.post(
   "/",
+  isLoggedin,
   validateCampgrounds,
   catchAsync(async (req, res, next) => {
     try {
@@ -53,6 +55,7 @@ router.post(
 // individual Campground Page
 router.get(
   "/:id",
+  isLoggedin,
   catchAsync(async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -71,6 +74,7 @@ router.get(
 // Updating/changing a selected Campground data
 router.get(
   "/:id/edit",
+  isLoggedin,
   catchAsync(async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -84,6 +88,7 @@ router.get(
 
 router.put(
   "/:id",
+  isLoggedin,
   validateCampgrounds,
   catchAsync(async (req, res, next) => {
     try {
@@ -100,7 +105,7 @@ router.put(
 );
 
 // Delete Campground
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", isLoggedin, async (req, res, next) => {
   try {
     const { id } = req.params;
     await Campground.findByIdAndDelete(id);
