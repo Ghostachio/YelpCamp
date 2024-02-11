@@ -6,6 +6,7 @@
   novalidate
   class="validate-form"
   novalidate
+  enctype="multipart/form-data"
 >
   <label class="form-label mb-3" for="title">Add Title</label>
   <input
@@ -27,16 +28,7 @@
     value="<%=campground.location%>"
     required
   />
-  <label class="form-label mb-3" for="image">Image Url</label>
-  <input
-    class="form-control mb-3"
-    type="text"
-    placeholder="Add location"
-    id="image"
-    name="image"
-    value="<%=campground.image%>"
-    required
-  />
+
   <label class="form-label mb-3" for="description">Description</label>
   <textarea
     class="form-control mb-3"
@@ -64,10 +56,12 @@
       <span for="price" class="input-group-text">.00</span>
     </div>
   </div>
+  <div class="m-3 pt-2">
+    <label class="form-label mb-3" for="image">Upload Images</label>
+    <input type="file" name="image" id="image" multiple />
+  </div>
   <div>
     <button class="btn btn-success mb-3">Update Campground</button>
   </div>
 </form>
-<a href="/campgrounds"
-  ><button class="btn btn-secondary mb-3">All campgrounds</button></a
->
+<a href="/campgrounds"><button class="btn btn-secondary mb-3">All campgrounds</button></a>

@@ -4,6 +4,7 @@ const Campground = require("../models/campground");
 const Review = require("../models/review");
 const catchAsync = require("../utils/catchAsync");
 const Joi = require("joi");
+const { isLoggedin } = require("../middlewares");
 
 // validating Campgrounds Reviews
 const validateReviews = (req, res, next) => {
@@ -21,10 +22,12 @@ const validateReviews = (req, res, next) => {
 
 router.post(
   "/",
+  isLoggedin,
   validateReviews,
   catchAsync(async (req, res) => {
     const campground = await Campground.findById(req.params.id);
     const review = new Review(req.body);
+    review.author = req.user._id;
     campground.reviews.push(review);
     await review.save();
     await campground.save();
@@ -35,6 +38,7 @@ router.post(
 
 router.delete(
   "/:reviewId",
+  isLoggedin,
   catchAsync(async (req, res) => {
     const { id, reviewId } = req.params;
     await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });

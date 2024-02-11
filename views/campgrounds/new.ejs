@@ -2,34 +2,15 @@
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
-    <form action="/campgrounds" method="post" novalidate class="validate-form">
+    <form action="/campgrounds" method="post" novalidate class="validate-form" enctype="multipart/form-data">
       <label class="form-label mb-3" for="title">Add Title</label>
-      <input
-        class="form-control mb-3"
-        type="text"
-        placeholder="Add title"
-        id="title"
-        name="title"
-        required
-      />
+      <input class="form-control mb-3" type="text" placeholder="Add title" id="title" name="title" required />
       <label class="form-label mb-3" for="location">Add Location</label>
-      <input
-        class="form-control mb-3"
-        type="text"
-        placeholder="Add location"
-        id="location"
-        name="location"
-        required
-      />
-      <label class="form-label mb-3" for="image">Image Url</label>
-      <input
-        class="form-control mb-3"
-        type="text"
-        placeholder="Add location"
-        id="image"
-        name="image"
-        required
-      />
+      <input class="form-control mb-3" type="text" placeholder="Add location" id="location" name="location" required />
+      <div>
+        <label for="image">Add Images</label>
+        <input type="file" name="image" id="image" multiple />
+      </div>
       <label class="form-label mb-3" for="description">Description</label>
       <textarea
         class="form-control mb-3"
@@ -43,14 +24,7 @@
         <label class="form-label" for="price">Price</label>
         <div class="input-group">
           <span class="input-group-text">$</span>
-          <input
-            type="text"
-            class="form-control"
-            aria-label="price"
-            id="price"
-            name="price"
-            required
-          />
+          <input type="text" class="form-control" aria-label="price" id="price" name="price" required />
           <span for="price" class="input-group-text">.00</span>
         </div>
       </div>
@@ -58,8 +32,6 @@
         <button class="btn btn-success mb-3">Add Campground</button>
       </div>
     </form>
-    <a href="/campgrounds"
-      ><button class="btn btn-secondary mb-3">All campgrounds</button></a
-    >
+    <a href="/campgrounds"><button class="btn btn-secondary mb-3">All campgrounds</button></a>
   </div>
 </div>
